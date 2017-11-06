@@ -16,7 +16,6 @@ import labo4.ui.MessageView;
 
 public class Labo4Main extends JFrame
 {
-
     private static final long serialVersionUID = 1L;
     private JPanel background;
 
@@ -31,10 +30,13 @@ public class Labo4Main extends JFrame
     // Exercice 5
     private Fanboy fanboy;
     private Hater hater;
-    
+
     // Exercice 6
     private Troll troll1;
     private Troll troll2;
+
+    // Exercice 7
+    private PressAgent pressAgent;
 
     /*
      * Initialisation des Celebrities et des Followers. �tablissement des liens
@@ -42,9 +44,9 @@ public class Labo4Main extends JFrame
      */
     public Labo4Main(String[] args)
     {
-        DramaticCelebrity dramaQueen = new DramaticCelebrity("BritneySpears", 8);
-        PositiveCelebrity spiritualKing = new PositiveCelebrity("LookWithin", 8);
-        BroScienceCelebrity superBro = new BroScienceCelebrity("JohnCena", 8);
+        DramaticCelebrity dramaQueen = new DramaticCelebrity("BritneySpears", 2);
+        PositiveCelebrity spiritualKing = new PositiveCelebrity("LookWithin", 2);
+        BroScienceCelebrity superBro = new BroScienceCelebrity("JohnCena", 2);
         celebs.add(dramaQueen);
         celebs.add(spiritualKing);
         celebs.add(superBro);
@@ -55,14 +57,17 @@ public class Labo4Main extends JFrame
 
         // Exercice 4
         nolife = new SerialReposter(this, "NoLife");
-        
+
         // Exercice 5
         fanboy = new Fanboy(this, "Fanboy");
         hater = new Hater(this, "Hater");
-        
+
         // Exercice 6
         troll1 = new Troll(this, "Troll numéro 1", 1);
         troll2 = new Troll(this, "Troll numéro 2", 2);
+
+        // Exercice 7
+        pressAgent = new PressAgent();
 
         // Ajout des observateurs au sujet
         dramaQueen.attach(fans.get(0));
@@ -77,14 +82,14 @@ public class Labo4Main extends JFrame
         dramaQueen.attach(nolife);
         spiritualKing.attach(nolife);
         superBro.attach(nolife);
-        
+
         // Exercice 5
         dramaQueen.attach(fanboy);
         spiritualKing.attach(hater);
-        
+
         fanboy.attach(fans.get(0));
         hater.attach(fans.get(1));
-        
+
         // Exercice 6
         dramaQueen.attach(troll1);
         dramaQueen.attach(troll2);
@@ -96,6 +101,11 @@ public class Labo4Main extends JFrame
         fanboy.attach(troll2);
         hater.attach(troll1);
         hater.attach(troll2);
+
+        // Exercice 7
+        dramaQueen.attachVeto(pressAgent);
+        spiritualKing.attachVeto(pressAgent);
+        superBro.attachVeto(pressAgent);
     }
 
     /*

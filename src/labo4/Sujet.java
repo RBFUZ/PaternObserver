@@ -7,6 +7,7 @@ import labo4.followers.Follower;
 public abstract class Sujet
 {
     private ArrayList<Follower> listObs;
+    private ArrayList<VetoFollower> listVeto;
 
     /**
      * Constructeur par défaut
@@ -14,6 +15,7 @@ public abstract class Sujet
     public Sujet()
     {
         listObs = new ArrayList<Follower>();
+        listVeto = new ArrayList<VetoFollower>();
     }
 
     /**
@@ -26,6 +28,11 @@ public abstract class Sujet
         listObs.add(f);
     }
 
+    public void attachVeto(VetoFollower v)
+    {
+        listVeto.add(v);
+    }
+
     /**
      * Notifie l'ensemble des observateurs
      * 
@@ -33,7 +40,16 @@ public abstract class Sujet
      */
     public void notifyFollowers(String name, String ns)
     {
-        for (int i = 0; i < listObs.size(); i++)
-            listObs.get(i).update(name, ns);
+        for (Follower f : listObs)
+            try
+            {
+                for (VetoFollower v : listVeto)
+                    if (!v.checkVeto(ns))
+                        throw new Exception();
+                f.update(name, ns);
+            }
+            catch (Exception e)
+            {
+            }
     }
 }
