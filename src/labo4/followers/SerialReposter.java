@@ -7,11 +7,8 @@ import labo4.ui.MessageView;
 /**
  * Représente un fan
  */
-public class SerialReposter implements Follower
+public class SerialReposter extends Reposter implements Follower
 {
-    protected MessageView viewport;
-    private String name;
-
     /**
      * Constructeur de confort qui initialise une nouvelle fenêtre avec un
      * message personnalisé
@@ -21,8 +18,7 @@ public class SerialReposter implements Follower
      */
     public SerialReposter(Labo4Main ui, String n)
     {
-        name = n;
-        viewport = new MessageView(ui, name + " news feed");
+        super(ui, n);
     }
 
     /**

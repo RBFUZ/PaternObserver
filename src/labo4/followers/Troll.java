@@ -7,10 +7,8 @@ import labo4.ui.MessageView;
 /**
  * Fan qui représente un Troll
  */
-public class Troll implements Follower
+public class Troll extends Reposter implements Follower
 {
-    protected MessageView viewport;
-    private String name;
     private int numeroDictionnaire;
 
     /**
@@ -22,8 +20,7 @@ public class Troll implements Follower
      */
     public Troll(Labo4Main ui, String n, int num)
     {
-        name = n;
-        viewport = new MessageView(ui, name + " news feed");
+        super(ui, n);
         numeroDictionnaire = num;
     }
 
@@ -38,7 +35,7 @@ public class Troll implements Follower
         else if (numeroDictionnaire == 2)
         {
             if (Util.contains(message, Util.TROLL_DICTIONNARY2))
-            viewport.appendMessage(Util.personnalize(name, message) + "\n" + Util.TROLL_REPLY2);
+                viewport.appendMessage(Util.personnalize(name, message) + "\n" + Util.TROLL_REPLY2);
         }
     }
 }

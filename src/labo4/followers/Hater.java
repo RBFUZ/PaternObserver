@@ -10,7 +10,7 @@ import labo4.ui.MessageView;
  */
 public class Hater extends SocialMediaCelebrity implements Follower
 {
-    protected MessageView viewport;
+    private Reposter reposter;
 
     /**
      * Constructeur de confort qui initialise une nouvelle fenêtre avec un
@@ -22,14 +22,14 @@ public class Hater extends SocialMediaCelebrity implements Follower
     public Hater(Labo4Main ui, String n)
     {
         super(n, 0);
-        viewport = new MessageView(ui, name + " news feed");
+        reposter = new Reposter(ui, n);
     }
 
     @Override
     public void update(String name, String message)
     {
         changeStatus();
-        viewport.appendMessage(Util.personnalize(name, status));
+        reposter.getViewport().appendMessage(Util.personnalize(name, status));
     }
 
     @Override

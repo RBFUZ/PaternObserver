@@ -28,4 +28,12 @@ public class Reposter implements Follower
         // Ajoute tout simplement le message dans la bo�te de texte.
         viewport.appendMessage(Util.personnalize(name, message));
     }
+
+    /**
+     * @return the viewport
+     */
+    public MessageView getViewport()
+    {
+        return viewport;
+    }
 }

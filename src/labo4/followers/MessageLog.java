@@ -8,7 +8,6 @@ import labo4.Util;
  */
 public class MessageLog implements Follower
 {
-
     public void update(String name, String message)
     {
         System.out.println(Util.personnalize(name, message));
